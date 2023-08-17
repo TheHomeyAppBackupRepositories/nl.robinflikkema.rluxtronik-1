@@ -1,0 +1,305 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "nl.robinflikkema.rluxtronik",
+  "version": "1.0.2",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Luxtronik",
+    "nl": "Luxtronik"
+  },
+  "description": {
+    "en": "Use your heatpump to its full potential!",
+    "nl": "Gebruik alle mogelijkheden van je warmtepomp!"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.jpg",
+    "large": "/assets/images/large.jpg",
+    "xlarge": "/assets/images/xlarge.jpg"
+  },
+  "author": {
+    "name": "Robin Flikkema"
+  },
+  "contributing": {
+    "donate": {
+      "githubSponsors": {
+        "username": "RobinFlikkema"
+      }
+    }
+  },
+  "brandColor": "#0736ff",
+  "bugs": {
+    "url": "https://github.com/RobinFlikkema/homey-luxtronik/issues"
+  },
+  "source": "https://github.com/RobinFlikkema/homey-luxtronik",
+  "homeyCommunityTopicId": 84826,
+  "flow": {
+    "triggers": [
+      {
+        "id": "luxtronik_operationmode_changed",
+        "title": {
+          "en": "Operation Mode updated",
+          "nl": "Warmtepompstatus bijgewerkt"
+        },
+        "tokens": [
+          {
+            "name": "luxtronik_operationmode",
+            "type": "string",
+            "title": {
+              "en": "Operation mode",
+              "nl": "Apparaatstatus"
+            },
+            "example": {
+              "en": "Heating",
+              "nl": "Verwamen"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luxtronik-2"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Luxtronik",
+        "nl": "Luxtronik"
+      },
+      "class": "heater",
+      "capabilities": [
+        "meter_power.total",
+        "meter_power.heat",
+        "meter_power.water",
+        "meter_power.pool",
+        "measure_water",
+        "measure_temperature.outdoor",
+        "measure_temperature.hotgas",
+        "measure_temperature.room_target",
+        "measure_temperature.room",
+        "measure_temperature.water_target",
+        "measure_temperature.water",
+        "measure_temperature.source_in",
+        "measure_temperature.source_out",
+        "measure_temperature.heating_supply",
+        "measure_temperature.heating_feedback",
+        "luxtronik_operationmode"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature.outdoor": {
+          "title": {
+            "en": "Outdoor Temperature",
+            "nl": "Buitentemperatuur"
+          }
+        },
+        "measure_temperature.hotgas": {
+          "title": {
+            "en": "Hot Gas Temperature",
+            "nl": "Heetgas",
+            "de": "Heissgas"
+          }
+        },
+        "measure_temperature.room": {
+          "title": {
+            "en": "Current Room Temperature",
+            "nl": "Huidige Ruimtetemperatuur"
+          }
+        },
+        "measure_temperature.room_target": {
+          "title": {
+            "en": "Target Room Temperature",
+            "nl": "Gewenste Ruimtetemperatuur"
+          }
+        },
+        "measure_temperature.water": {
+          "title": {
+            "en": "Current Water Temperature",
+            "nl": "Huidige Tapwatertemperatuur"
+          }
+        },
+        "measure_temperature.water_target": {
+          "title": {
+            "en": "Target Water Temperature",
+            "nl": "Gewenste Tapwatertemperatuur"
+          }
+        },
+        "measure_temperature.source_in": {
+          "title": {
+            "en": "Current Source In",
+            "nl": "Huidige Bron-in"
+          }
+        },
+        "measure_temperature.source_out": {
+          "title": {
+            "en": "Current Source Out",
+            "nl": "Huidige Bron-uit"
+          }
+        },
+        "measure_temperature.heating_supply": {
+          "title": {
+            "en": "Heating In",
+            "nl": "Verwarming Aanvoer"
+          }
+        },
+        "measure_temperature.heating_feedback": {
+          "title": {
+            "en": "Heating Return",
+            "nl": "Verwarming Retour"
+          }
+        },
+        "meter_power.total": {
+          "title": {
+            "en": "Total Power Usage",
+            "nl": "Totale Warmteenergie"
+          }
+        },
+        "meter_power.heat": {
+          "title": {
+            "en": "Total Heating Power Usage",
+            "nl": "Totale Warmteenergie Verwarming"
+          }
+        },
+        "meter_power.water": {
+          "title": {
+            "en": "Total Water Heating Power Usage",
+            "nl": "Totale Warmteenergie Tapwater"
+          }
+        },
+        "meter_power.pool": {
+          "title": {
+            "en": "Total Pool Heating Power Usage",
+            "nl": "Totale Warmteenergie Zwembad"
+          }
+        },
+        "measure_water": {
+          "units": {
+            "en": "L/hour",
+            "nl": "L/uur",
+            "de": "L/Stunde"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/luxtronik-2/assets/images/small.png",
+        "large": "/drivers/luxtronik-2/assets/images/large.png",
+        "xlarge": "/drivers/luxtronik-2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "enter_ip"
+        },
+        {
+          "id": "add_my_device",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luxtronik-2",
+      "settings": [
+        {
+          "id": "host",
+          "type": "text",
+          "label": {
+            "en": "IP Address",
+            "nl": "IP-adres"
+          },
+          "value": "192.2.0.10",
+          "hint": {
+            "en": "The IP Address of the device.",
+            "nl": "Het IP-adres van het apparaat"
+          }
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "luxtronik_operationmode": {
+      "type": "enum",
+      "title": {
+        "en": "Operation Mode",
+        "nl": "Huidige status"
+      },
+      "getable": true,
+      "uiComponent": "sensor",
+      "desc": {
+        "en": "Status of the Heatpump",
+        "nl": "Huidige status van de warmptepomp"
+      },
+      "values": [
+        {
+          "id": "Heating",
+          "title": {
+            "en": "Heating",
+            "nl": "Verwarmen"
+          }
+        },
+        {
+          "id": "Hot Water",
+          "title": {
+            "en": "Hot Water",
+            "nl": "Warm Water"
+          }
+        },
+        {
+          "id": "Swimming Pool/Solar",
+          "title": {
+            "en": "Swimming Pool/Solar",
+            "nl": "Zwembad/Zonneboiler"
+          }
+        },
+        {
+          "id": "EVU",
+          "title": {
+            "en": "EVU",
+            "nl": "EVU"
+          }
+        },
+        {
+          "id": "Defrost",
+          "title": {
+            "en": "Defrost",
+            "nl": "Ontdooien"
+          }
+        },
+        {
+          "id": "No Request",
+          "title": {
+            "en": "No Request",
+            "nl": "Geen vraag"
+          }
+        },
+        {
+          "id": "Heating External",
+          "title": {
+            "en": "Heating External",
+            "nl": "Externe verwarming"
+          }
+        },
+        {
+          "id": "Cooling",
+          "title": {
+            "en": "Cooling",
+            "nl": "Koelen"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        
+        div {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #00c341;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #00c341;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin: 0 auto; /* Center align the button */
+            display: block;
+        }
+        
+        button:hover {
+            background-color: #00a233;
+        }
+        
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title" data-i18n="pair.configuration.title">Device Configuration</h2>
+        
+        <div>
+            <label for="ip_address" data-i18n="pair.configuration.ip_address">IP address:</label>
+            <input id="ip_address" maxlength="70" placeholder="192.0.2.128" autofocus>
+        </div>
+
+        <div>
+            <label for="devicename" data-i18n="pair.configuration.name">Name:</label>
+            <input id="devicename" maxlength="70">
+        </div>
+
+        <div>
+            <button id="add_device" data-i18n="pair.configuration.add_device_btn">Add device</button>
+        </div>
+    </div>
+</body>
+
+<script type="application/javascript">
+
+    Homey.setTitle(Homey.__('settings.title'));
+
+    //Homey.emit("my_event", { foo: "bar" }).then(function (result) {
+    //  console.log(result); // result is: Hello!
+    //});
+
+    document.getElementById('add_device').onclick = (e) => {
+    e.preventDefault();
+    const devicename = document.getElementById("devicename").value;
+    const ip_address = document.getElementById("ip_address").value;
+
+    
+    var deviceNameTranslation = Homey.__("pair.configuration.namevalue");
+    document.getElementById('devicename').value = deviceNameTranslation;
+    document.getElementById('devicename').value = "TEST";
+
+    Homey.emit('device_input', { devicename, ip_address }, (err, result) => {
+        Homey.hideLoadingOverlay();
+        if (err) {
+            Homey.alert(err, 'error', () => {
+        });
+        } else {
+            const newDevice = {
+                name: devicename,
+                settings: {
+                    host: ip_address
+                },
+                data: {
+                    initialhost: ip_address
+                }
+            };
+
+            Homey.setViewStoreValue('add_my_device', 'devices', [newDevice], (err, data) => {
+                Homey.showView('add_my_device');
+            });
+        }
+    });
+
+  };
+  </script>
+  
+</html>

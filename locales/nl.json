@@ -1,0 +1,19 @@
+{
+    "settings": {
+      "title": "rLuxtronik"
+    },
+    "pair": {
+      "configuration" : {
+        "title": "Apparaat Configuratie",
+        "name": "Apparaatnaam:",
+        "ip_address" : "IP(v4)-adres:",
+        "add_device_btn": "Toevoegen",
+        "invalid_device_name": "Ontbrekende apparaatnaam",
+        "missing_ip_address": "Ontbrekend IP-adres",
+        "invalid_ip_address": "Onjuist IP-adres"
+      }
+    },
+    "capabilityNames": {
+      "measure_temperature.outdoor": "BuitenTemperatuur"
+    }
+  }

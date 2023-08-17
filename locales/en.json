@@ -1,0 +1,19 @@
+{
+    "settings": {
+      "title": "rLuxtronik"
+    },
+    "pair": {
+      "configuration" : {
+        "title": "Device Configuration",
+        "name": "Device Name:",
+        "ip_address" : "IP(v4) address:",
+        "add_device_btn": "Add device",
+        "invalid_device_name": "Missing device name",
+        "missing_ip_address": "Missing IP address",
+        "invalid_ip_address": "Invalid IP address"
+      }
+    },
+    "capabilityNames": {
+      "measure_temperature.outdoor": "Outdoor Temperature"
+    }
+  }
